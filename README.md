@@ -99,7 +99,7 @@ To install **Adaptive Power Neurons**, follow these steps:
 Clone the repository and run the following command in the terminal:
 
 ```bash
-pip install .
+pip install adaptive-power-neurons
 
 #Example Usage:
 from adaptive_power_neurons import AdaptivePowerNeuron, AdaptivePowerModel, Optimizer
