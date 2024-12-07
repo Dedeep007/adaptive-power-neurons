@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="adaptive-power-neurons", 
+    name="adaptive_power_neurons", 
     version="0.1.0",  
     packages=find_packages(), 
     description="A machine learning model with adaptive power neurons for polynomial feature processing.",
