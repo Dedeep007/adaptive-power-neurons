@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="adaptive_power_neurons", 
-    version="0.1.2",  # Update version accordingly
+    version="0.1.3",  # Update version accordingly
     packages=find_packages(), 
     description="A machine learning model with adaptive power neurons for polynomial feature processing.",
     long_description=long_description,  # Ensure this is read correctly
