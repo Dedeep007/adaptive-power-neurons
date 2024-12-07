@@ -2,7 +2,7 @@ import numpy as np
 #Author = Dedeep.v.
 #Github_username = Dedeep007
 
-class AdaptivePowerPerceptron:
+class AdaptivePowerNeuron:
     """
     A perceptron that adjusts its polynomial feature power and input index dynamically.
     It uses polynomial features and adjusts weights and biases based on the error.
