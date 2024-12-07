@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="adaptive-power-neurons", 
-    version="0.1.5", 
+    version="0.1.6", 
     packages=find_packages(),
     description="A machine learning model with adaptive power neurons for polynomial feature processing.",
     long_description=open('README.md').read(),
