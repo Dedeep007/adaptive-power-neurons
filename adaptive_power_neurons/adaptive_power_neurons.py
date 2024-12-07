@@ -1,6 +1,4 @@
 import numpy as np
-#Author = Dedeep.v.
-#Github_username = Dedeep007
 
 class AdaptivePowerNeuron:
     """
@@ -129,10 +127,9 @@ class Optimizer:
         Apply optimizer settings to the given perceptron based on the average parameters of the layer.
 
         Parameters:
-            perceptron (AdaptivePowerPerceptron): The perceptron to which the optimizer will apply settings.
+            perceptron (AdaptivePowerNeuron): The perceptron to which the optimizer will apply settings.
             layer_avg_params (dict): The average parameters of the layer to match with the optimizer settings.
         """
-        # Apply a weighted adjustment of the optimizer's parameters to match layer average
         perceptron.learning_rate = (self.learning_rate + layer_avg_params['learning_rate']) / 2
         perceptron.max_power = (self.max_power + layer_avg_params['max_power']) / 2
         perceptron.indexing_rate = (self.indexing_rate + layer_avg_params['indexing_rate']) / 2
@@ -140,7 +137,7 @@ class Optimizer:
 
 class AdaptivePowerNeurons:
     """
-    A neural network model using layers of AdaptivePowerPerceptrons.
+    A neural network model using layers of AdaptivePowerNeurons.
     This model can have multiple layers of perceptrons, and the optimizer can be used to adjust
     hyperparameters dynamically.
     """
@@ -163,7 +160,7 @@ class AdaptivePowerNeurons:
             indexing_rate (float): Indexing rate for this layer.
         """
         layer = [
-            AdaptivePowerPerceptron(input_dim, max_power, learning_rate, indexing_rate)
+            AdaptivePowerNeuron(input_dim, max_power, learning_rate, indexing_rate)
             for _ in range(num_perceptrons)
         ]
         self.layers.append({'perceptrons': layer, 'learning_rate': learning_rate, 'max_power': max_power, 'indexing_rate': indexing_rate})
