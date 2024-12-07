@@ -1,13 +1,15 @@
-# setup.py
-
 from setuptools import setup, find_packages
+
+# Read the contents of your README file to use as the long description
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
 
 setup(
     name="adaptive_power_neurons", 
-    version="0.1.1",  
+    version="0.1.2",  # Update version accordingly
     packages=find_packages(), 
     description="A machine learning model with adaptive power neurons for polynomial feature processing.",
-    long_description=open('README.md').read(),  # Long description from README.md file
+    long_description=long_description,  # Ensure this is read correctly
     long_description_content_type="text/markdown",
     url="https://github.com/Dedeep007/adaptive-power-neurons", 
     author="Dedeep Vasireddy", 
