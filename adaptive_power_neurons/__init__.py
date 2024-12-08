@@ -1,5 +1,7 @@
-from .adaptive_power_neurons import AdaptivePowerNeuron
-from .optimizer import Optimizer
-from .adaptive_power_neurons_model import AdaptivePowerNeurons
+# __init__.py
 
-__all__ = ['AdaptivePowerNeuron', 'Optimizer', 'AdaptivePowerNeurons']
+from .activation import Activation
+from .optimizer import SGD, Optimizer
+from .adaptive_power_neuron import AdaptivePowerNeuron
+from .dense_layer import DenseLayer
+from .adaptive_power_model import AdaptivePowerModel
