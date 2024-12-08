@@ -1,55 +1,79 @@
+from adaptive_power_neuron import AdaptivePowerNeuron
 import numpy as np
-from .adaptive_power_neurons import AdaptivePowerNeuron
 
 class AdaptivePowerNeurons:
     """
-    A neural network model using layers of AdaptivePowerNeurons.
-    This model can have multiple layers of perceptrons, and the optimizer can be used to adjust
-    hyperparameters dynamically.
+    Neural Network composed of adaptive power neurons.
+
+    This class implements a multi-layer neural network using adaptive power neurons.
+    
+    Attributes:
+        layers (list): A list of layers, each containing adaptive power neurons.
+        optimizer (Optimizer): Optimizer for updating the weights of the network.
     """
+    
     def __init__(self):
+        """
+        Initializes the Adaptive Power Neurons model.
+        """
         self.layers = []
-        self.optimizer = None
 
     def add_layer(self, num_perceptrons, input_dim, max_power, learning_rate, indexing_rate):
-        layer = [
-            AdaptivePowerNeuron(input_dim, max_power, learning_rate, indexing_rate)
-            for _ in range(num_perceptrons)
-        ]
-        self.layers.append({'perceptrons': layer, 'learning_rate': learning_rate, 'max_power': max_power, 'indexing_rate': indexing_rate})
+        """
+        Adds a new layer of adaptive power neurons to the model.
+
+        Args:
+            num_perceptrons (int): The number of perceptrons (neurons) in the layer.
+            input_dim (int): The number of input features to each neuron.
+            max_power (int): Maximum power for the adaptive neuron.
+            learning_rate (float): Learning rate for the neuron.
+            indexing_rate (float): Indexing rate for the neuron.
+        """
+        for _ in range(num_perceptrons):
+            # Add each perceptron (neuron) to the layer
+            layer = AdaptivePowerNeuron(input_dim, max_power, learning_rate, indexing_rate)
+            self.layers.append(layer)
 
     def set_optimizer(self, optimizer):
+        """
+        Sets the optimizer for the entire network.
+
+        Args:
+            optimizer (Optimizer): Optimizer used to update weights during training.
+        """
         self.optimizer = optimizer
-        for layer in self.layers:
-            layer_avg_params = {
-                'learning_rate': np.mean([p.learning_rate for p in layer['perceptrons']]),
-                'max_power': np.mean([p.max_power for p in layer['perceptrons']]),
-                'indexing_rate': np.mean([p.indexing_rate for p in layer['perceptrons']])
-            }
-            for perceptron in layer['perceptrons']:
-                self.optimizer.apply_optimizer(perceptron, layer_avg_params)
+
+    def fit(self, X, y, epochs):
+        """
+        Trains the model over a number of epochs.
+
+        Args:
+            X (numpy.ndarray): Input data for training.
+            y (numpy.ndarray): Target output for training.
+            epochs (int): Number of training epochs.
+        """
+        for epoch in range(epochs):
+            total_loss = 0
+            for x, target in zip(X, y):
+                for layer in self.layers:
+                    layer.update_weights(x, target)
+                    total_loss += np.sum((layer.predict(x) - target) ** 2)  # Loss calculation
+            print(f"Epoch {epoch + 1}/{epochs}, Loss: {total_loss / len(X)}")
 
     def predict(self, X):
-        for layer in self.layers:
-            new_X = []
-            for xi in X:
-                layer_output = [perceptron.predict(xi) for perceptron in layer['perceptrons']]
-                new_X.append(layer_output)
-            X = np.array(new_X)
-        return X
+        """
+        Makes predictions using the trained model.
 
-    def fit(self, X, y, epochs=10):
-        for epoch in range(epochs):
-            for layer in self.layers:
-                for perceptron in layer['perceptrons']:
-                    for xi, yi in zip(X, y):
-                        perceptron.update_weights(xi, yi)
-            loss = self.calculate_loss(X, y)
-            print(f"Epoch {epoch + 1}/{epochs}, Loss: {loss}")
+        Args:
+            X (numpy.ndarray): Input data for prediction.
 
-    def calculate_loss(self, X, y):
-        total_loss = 0
-        for xi, yi in zip(X, y):
-            prediction = self.predict([xi])
-            total_loss += (yi - prediction[0][0]) ** 2
-        return total_loss / len(y)
+        Returns:
+            numpy.ndarray: Predicted output for each input sample.
+        """
+        predictions = []
+        for x in X:
+            prediction = np.zeros(len(self.layers))  # Placeholder for the output of each layer
+            for idx, layer in enumerate(self.layers):
+                prediction[idx] = layer.predict(x)  # Get predictions from each layer
+            predictions.append(prediction)
+        return np.array(predictions)
