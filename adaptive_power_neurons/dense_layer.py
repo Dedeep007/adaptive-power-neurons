@@ -1,6 +1,5 @@
 # dense_layer.py
 import numpy as np
-from .adaptive_power_neurons import AdaptivePowerNeuron
 from .activation import Activation 
 
 class DenseLayer:
