@@ -71,35 +71,32 @@ pip install adaptive-power-neurons
 
 # Example Usage for Adaptive Power Neurons
 
-from adaptive_power_neurons import AdaptivePowerNeuron, AdaptivePowerNeurons, Optimizer
+# train_model.py
+
 import numpy as np
+from adaptive_power_neurons import AdaptivePowerModel, SGD, DenseLayer
 
-# Sample data (X: input features, y: target labels)
-X = np.array([[1], [2], [3], [4], [5]])
-y = np.array([0, 0, 1, 1, 1])
+# Hyperparameters
+input_dim = 3  # Number of input features
+output_dim = 2  # Number of output neurons
+max_power = 2  # Max power for the neurons
+learning_rate = 0.01  # Learning rate for the optimizer
+indexing_rate = 0.001  # Indexing rate
 
-# Create an adaptive power neuron
-neuron = AdaptivePowerNeuron(input_dim=1, max_power=3, learning_rate=0.001, indexing_rate=0.01)
+# Create SGD optimizer
+optimizer = SGD(learning_rate)
 
-# Create a neural network with 2 layers (each using the adaptive power neuron)
-model = AdaptivePowerNeurons()
-model.add_layer(num_perceptrons=1, input_dim=1, max_power=3, learning_rate=0.001, indexing_rate=0.01)
-model.add_layer(num_perceptrons=1, input_dim=1, max_power=3, learning_rate=0.001, indexing_rate=0.01)
+# Create AdaptivePowerModel and add layers
+model = AdaptivePowerModel()
+model.add(DenseLayer(input_dim, 4, max_power, optimizer, indexing_rate, activation="relu"))
+model.add(DenseLayer(4, output_dim, max_power, optimizer, indexing_rate, activation="sigmoid"))
 
-# Create an optimizer for the model
-optimizer = Optimizer(learning_rate=0.001, max_power=3, indexing_rate=0.01)
+# Dummy dataset
+x = np.array([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]])  # Input features
+y = np.array([[0.5, 1.0], [1.0, 0.0], [0.0, 1.0]])  # Target labels
 
-# Set the optimizer for the model
-model.set_optimizer(optimizer)
-
-# Train the model for 20 epochs
-model.fit(X, y, epochs=20)
-
-# Test prediction
-test_input = np.array([[3]])  # New test input
-prediction = model.predict(test_input)
-
-print(f"Prediction for input {test_input}: {prediction}")
+# Train the model
+model.train(x, y, epochs=100, batch_size=1)
 
 
 
