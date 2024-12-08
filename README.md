@@ -66,12 +66,9 @@ b = b - \eta \cdot \frac{\partial \text{MSE}}{\partial b}, \quad
 
 To install the library, clone the repository and install it locally:
 ```bash
-
 pip install adaptive-power-neurons
 
 # Example Usage for Adaptive Power Neurons
-
-# train_model.py
 
 import numpy as np
 from adaptive_power_neurons import AdaptivePowerModel, SGD, DenseLayer
@@ -80,16 +77,16 @@ from adaptive_power_neurons import AdaptivePowerModel, SGD, DenseLayer
 input_dim = 3  # Number of input features
 output_dim = 2  # Number of output neurons
 max_power = 2  # Max power for the neurons
-learning_rate = 0.01  # Learning rate for the optimizer
-indexing_rate = 0.001  # Indexing rate
+learning_rate = 0.001  # Learning rate for the optimizer
+indexing_rate = 0.01  # Indexing rate
 
 # Create SGD optimizer
 optimizer = SGD(learning_rate)
 
 # Create AdaptivePowerModel and add layers
 model = AdaptivePowerModel()
-model.add(DenseLayer(input_dim, 4, max_power, optimizer, indexing_rate, activation="relu"))
-model.add(DenseLayer(4, output_dim, max_power, optimizer, indexing_rate, activation="sigmoid"))
+model.add(DenseLayer(input_dim, 1, max_power, optimizer, indexing_rate, activation="relu"))
+model.add(DenseLayer(1, output_dim, max_power, optimizer, indexing_rate, activation="sigmoid"))
 
 # Dummy dataset
 x = np.array([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]])  # Input features
@@ -98,5 +95,5 @@ y = np.array([[0.5, 1.0], [1.0, 0.0], [0.0, 1.0]])  # Target labels
 # Train the model
 model.train(x, y, epochs=100, batch_size=1)
 
-
+model.predict(np.array([[1, 2, 3]]))
 
