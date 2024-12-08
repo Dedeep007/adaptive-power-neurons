@@ -29,7 +29,6 @@ jobs:
 
       - name: Upload to PyPI
         env:
-          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}  # Your PyPI username (from GitHub Secrets)
-          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}  # Your PyPI API token (from GitHub Secrets)
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}  # Use the API token
         run: |
           twine upload dist/* --repository-url https://upload.pypi.org/legacy/
