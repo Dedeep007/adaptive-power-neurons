@@ -4,6 +4,7 @@ from .activation import Activation
 
 class DenseLayer:
     def __init__(self, input_dim, output_dim, max_power, optimizer, indexing_rate, activation="identity"):
+        from .adaptive_power_neurons import AdaptivePowerNeuron
         self.neurons = [
             AdaptivePowerNeuron(input_dim, max_power, optimizer, indexing_rate)
             for _ in range(output_dim)
