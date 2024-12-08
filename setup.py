@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='adaptive_power_neurons',  # Name of the package
-    version='0.3.5',  # Corrected version number
+    version='0.3.6',  # Corrected version number
     author='Dedeep Vasireddy',  # Your name or organization
     author_email='vasireddydedeep@gmail.com',  # Your email
     description='A neural network model using adaptive power neurons for regression and classification',
