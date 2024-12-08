@@ -1,4 +1,4 @@
-from adaptive_power_neuron import AdaptivePowerNeuron
+from adaptive_power_neurons import AdaptivePowerNeuron
 import numpy as np
 
 class AdaptivePowerNeurons:
