@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     # Basic metadata
     name='adaptive_power_neurons',  # Name of the package
-    version='0.1.2.5',  # Follow semantic versioning: MAJOR.MINOR.PATCH
+    version='0.1.2.5.3',  # Version of the package (ensure this is updated on each release)
     author='Dedeep Vasireddy',  # Your name or organization
     author_email='vasireddydedeep@gmail.com',  # Your email
     description='A neural network model using adaptive power neurons for regression and classification',
@@ -19,8 +19,7 @@ setup(
     python_requires='>=3.6',  # Python version that your package supports
 
     # List of packages to include in the distribution
-    packages=find_packages(where='src'),  # Finds all packages under the 'src' directory
-    package_dir={'': 'src'},  # Tells setuptools to look for packages under 'src'
+    packages=find_packages(),  # Finds all packages in the current directory
 
     # Dependencies (these will be installed automatically when your package is installed)
     install_requires=[
@@ -39,8 +38,6 @@ setup(
         'dev': [
             'pytest>=5.4',  # Example: testing framework
             'sphinx>=3.0',  # Example: for documentation generation
-            'black',  # Code formatting tool
-            'flake8',  # Linting tool
         ],
     },
 
@@ -55,8 +52,6 @@ setup(
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
         'License :: OSI Approved :: MIT License',  # Assuming you're using MIT license
-        'Programming Language :: Python :: 3.7',  # Add any specific versions you support
-        'Programming Language :: Python :: 3.6',  # Add any specific versions you support
     ],
 
     # Optional: Keywords for your package to help users discover it
