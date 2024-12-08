@@ -95,5 +95,5 @@ y = np.array([[0.5, 1.0], [1.0, 0.0], [0.0, 1.0]])  # Target labels
 # Train the model
 model.train(x, y, epochs=100, batch_size=1)
 
-model.predict(np.array([[1, 2, 3]]))
+model.predict_(np.array([[1, 2, 3]]))
 
