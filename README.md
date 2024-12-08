@@ -66,8 +66,7 @@ b = b - \eta \cdot \frac{\partial \text{MSE}}{\partial b}, \quad
 
 To install the library, clone the repository and install it locally:
 ```bash
-git clone https://github.com/yourusername/adaptive-power-neurons.git
-cd adaptive-power-neurons
+
 pip install adaptive-power-neurons
 
 # Example Usage for Adaptive Power Neurons
