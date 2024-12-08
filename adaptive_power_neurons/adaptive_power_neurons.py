@@ -12,7 +12,7 @@ class AdaptivePowerNeuron:
         self.weights = np.random.randn(input_dim) * 0.1  # Small random weights
         self.bias = 0
 
-    def predict_i(self, x):
+    def predict(self, x):
         x_transformed = np.power(x, self.max_power + self.current_index_offset)
         return np.dot(x_transformed, self.weights) + self.bias
 
