@@ -36,7 +36,7 @@ class AdaptivePowerModel:
                     total_loss += layer.backward(x_batch, y_batch)
             print(f"Epoch {epoch + 1}, Loss: {total_loss / (num_samples / batch_size):.4f}")
 
-    def predict(self, x):
+    def predict_(self, x):
         """
         Predict the output for a given input x.
         Perform a forward pass and return the predicted values.
