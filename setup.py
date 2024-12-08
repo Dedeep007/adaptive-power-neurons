@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     # Basic metadata
     name='adaptive_power_neurons',  # Name of the package
-    version='0.1.2.0.3',  # Version of the package (ensure this is updated on each release)
+    version='0.1.2.5',  # Follow semantic versioning: MAJOR.MINOR.PATCH
     author='Dedeep Vasireddy',  # Your name or organization
     author_email='vasireddydedeep@gmail.com',  # Your email
     description='A neural network model using adaptive power neurons for regression and classification',
@@ -39,6 +39,8 @@ setup(
         'dev': [
             'pytest>=5.4',  # Example: testing framework
             'sphinx>=3.0',  # Example: for documentation generation
+            'black',  # Code formatting tool
+            'flake8',  # Linting tool
         ],
     },
 
@@ -53,6 +55,8 @@ setup(
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
         'License :: OSI Approved :: MIT License',  # Assuming you're using MIT license
+        'Programming Language :: Python :: 3.7',  # Add any specific versions you support
+        'Programming Language :: Python :: 3.6',  # Add any specific versions you support
     ],
 
     # Optional: Keywords for your package to help users discover it
