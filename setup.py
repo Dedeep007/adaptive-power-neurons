@@ -2,8 +2,8 @@ from setuptools import setup, find_packages
 
 setup(
     # Basic metadata
-    name=('adaptive_power_neurons', 'dense_layer.py')  # Name of the package
-    version='0.1.6.7.7',  # Version of the package (ensure this is updated on each release)
+    name=('adaptive_power_neurons')  # Name of the package
+    version='0.1.6.7.8',  # Version of the package (ensure this is updated on each release)
     author='Dedeep Vasireddy',  # Your name or organization
     author_email='vasireddydedeep@gmail.com',  # Your email
     description='A neural network model using adaptive power neurons for regression and classification',
