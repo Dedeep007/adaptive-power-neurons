@@ -1,5 +1,6 @@
 # adaptive_power_model.py
 from .dense_layer import DenseLayer
+from .activation import Activation 
 
 class AdaptivePowerModel:
     def __init__(self):
