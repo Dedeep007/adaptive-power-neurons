@@ -1,7 +1,6 @@
 # adaptive_power_neuron.py
 import numpy as np
-from .dense_layer import DenseLayer
-from .activation import Activation 
+from .activation import Activation
 
 class AdaptivePowerNeuron:
     def __init__(self, input_dim, max_power, optimizer, indexing_rate):
